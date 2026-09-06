@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El turno de la noche · Asistente de WhatsApp para su negocio</title>
+<meta name="description" content="Un asistente que contesta el WhatsApp de su negocio a cualquier hora, en español e inglés: responde lo repetido, toma los datos de la cita y le pasa la conversación cuando hace falta. Instalación $250, $40 al mes.">
+<meta property="og:title" content="El turno de la noche">
+<meta property="og:description" content="Un recepcionista que contesta a las 11 de la noche. Asistente de WhatsApp para negocios en Costa Rica.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B100F">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --night:#0B100F;
+  --surface:#131A18;
+  --surface-2:#1A2320;
+  --line:#26312D;
+  --line-2:#33403B;
+  --text:#ECF2EE;
+  --text-2:#AFC0B8;
+  --muted:#7C8F86;
+  --lamp:#F0B45F;
+  --signal:#3FC28C;
+  --bubble-in:#1D2724;
+  --bubble-out:#1E4335;
+  --chatbg:#0F1614;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--night);
+  color:var(--text);
+  font-family:"Archivo",system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16.5px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.glow{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(58vw 46vw at 78% 8%, rgba(240,180,95,.12), transparent 62%),
+    radial-gradient(40vw 40vw at 8% 92%, rgba(63,194,140,.06), transparent 65%);
+}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 26px}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--lamp)}
+h1{
+  font-family:"Fraunces",Georgia,serif;font-weight:400;font-optical-sizing:auto;
+  font-size:clamp(38px,5.6vw,64px);line-height:1.02;letter-spacing:-.015em;
+  margin:16px 0 18px;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--lamp);font-weight:300}
+h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:400;
+  font-size:clamp(25px,3.2vw,34px);line-height:1.15;letter-spacing:-.01em;
+  margin:0 0 18px;text-wrap:balance;
+}
+h3{font-size:16px;font-weight:600;margin:0 0 5px;letter-spacing:-.005em}
+p{margin:0 0 15px;color:var(--text-2);max-width:60ch}
+a{color:var(--lamp)}
+section{padding:68px 0;border-top:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:56px;align-items:start;padding:64px 0 68px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:40px}}
+.lede{font-size:19px;color:var(--text);max-width:54ch}
+.cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}
+.btn{
+  display:inline-block;background:var(--lamp);color:#231603;text-decoration:none;
+  border-radius:11px;padding:13px 22px;font-weight:600;font-size:15.5px;
+  box-shadow:0 0 0 1px rgba(240,180,95,.35),0 10px 30px -12px rgba(240,180,95,.5);
+}
+.btn:hover{background:#f6c176}
+.btn.ghost{background:transparent;color:var(--text);box-shadow:none;border:1px solid var(--line-2)}
+.btn.ghost:hover{border-color:var(--lamp);color:var(--lamp)}
+.trust{font-size:13.5px;color:var(--muted);margin-top:16px}
+.phone{
+  border:1px solid var(--line-2);border-radius:24px;overflow:hidden;background:var(--chatbg);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.03);
+  display:flex;flex-direction:column;height:470px;
+}
+.phone .bar{display:flex;align-items:center;gap:11px;padding:12px 15px;background:#16221D;border-bottom:1px solid var(--line)}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,#2C4A3D,#1B2E27);
+  display:grid;place-items:center;font-family:"Fraunces",serif;font-size:17px;color:var(--signal);flex:none}
+.bar .nm{font-weight:600;font-size:14.5px;line-height:1.2}
+.bar .st{font-size:11.5px;color:var(--signal);display:flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--signal);display:inline-block}
+.flag{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 15px;color:var(--muted);background:#101817;border-bottom:1px solid var(--line)}
+.thread{flex:1;overflow-y:auto;padding:15px 13px;display:flex;flex-direction:column;gap:9px}
+.b{max-width:85%;padding:9px 12px;border-radius:13px;font-size:14.5px;line-height:1.45;white-space:pre-wrap}
+.b.in{align-self:flex-start;background:var(--bubble-in);border-top-left-radius:4px}
+.b.out{align-self:flex-end;background:var(--bubble-out);border-top-right-radius:4px}
+.b .t{display:block;font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--muted);text-align:right;margin-top:4px}
+.replay{margin-top:14px;background:transparent;border:1px solid var(--line-2);color:var(--text-2);
+  border-radius:9px;padding:9px 13px;font:400 13px "Archivo",sans-serif;cursor:pointer;width:100%}
+.replay:hover{border-color:var(--lamp);color:var(--lamp)}
+.log{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.log div{padding:20px 20px 22px;border-right:1px solid var(--line);background:var(--surface)}
+.log div:last-child{border-right:0}
+@media(max-width:760px){.log div{border-right:0;border-bottom:1px solid var(--line)}.log div:last-child{border-bottom:0}}
+.log .hr{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--lamp);letter-spacing:.04em}
+.log .msg{margin:9px 0 0;font-size:14.5px;color:var(--text)}
+.log .who{margin:9px 0 0;font-size:12.5px;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:17px 2px;border-bottom:1px solid var(--line);align-items:start}
+.steps .n{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--lamp);padding-top:3px}
+.steps p{margin:0;font-size:15px}
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:800px}
+.price > div{background:var(--surface);padding:20px 21px;border-right:1px solid var(--line)}
+.price > div:last-child{border-right:0}
+@media(max-width:700px){.price > div{border-right:0;border-bottom:1px solid var(--line)}.price > div:last-child{border-bottom:0}}
+.price dt{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.price dd{margin:0;font-family:"Fraunces",serif;font-size:30px;font-weight:400;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--text)}
+.price small{display:block;font-family:"Archivo",sans-serif;font-weight:400;font-size:13px;color:var(--muted);margin-top:7px;line-height:1.45}
+.week{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line);max-width:760px}
+.week li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line)}
+.week b{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--lamp);font-weight:500;letter-spacing:.03em}
+.week span{font-size:14.5px;color:var(--text-2)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;border:1px solid var(--line-2);border-radius:999px;
+  padding:7px 12px;color:var(--text-2);background:var(--surface)}
+.faq{max-width:70ch}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;padding:16px 0;font-weight:500;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:18px;color:var(--text)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--lamp);font-family:"JetBrains Mono",monospace}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 18px;font-size:15px}
+.close{background:var(--surface);border:1px solid var(--line-2);border-radius:16px;padding:30px 30px 26px;max-width:660px;
+  box-shadow:0 30px 70px -40px rgba(0,0,0,.9)}
+footer{border-top:1px solid var(--line);padding:30px 0 56px;color:var(--muted);font-size:13.5px}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Asistente de WhatsApp · Costa Rica</div>
+      <h1>Un recepcionista que <em>contesta</em> a las 11 de la noche.</h1>
+      <p class="lede">Su negocio recibe consultas por WhatsApp cuando nadie está viendo el teléfono. Las que no se contestan en minutos se van con el que sí contestó.</p>
+      <p>Le instalo un asistente sobre el número de WhatsApp que ya usa. Responde al instante, en español o en inglés, con la información de su negocio y nada más. Toma los datos de la cita y le pasa la conversación a usted cuando el caso lo amerita.</p>
+      <div class="cta">
+        <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Quiero%20el%20demo%20del%20asistente&amp;body=Negocio%3A%0AQu%C3%A9%20hacen%3A%0AHorario%3A%0AN%C3%BAmero%20de%20WhatsApp%3A%0A%0A">Pedir el demo con mis datos</a>
+        <a class="btn ghost" href="#precio">Ver precio</a>
+      </div>
+      <p class="trust">Sin cambiar de número. Sin contrato. 14 días de prueba: si no le sirve, no paga.</p>
+    </div>
+    <div>
+      <div class="phone">
+        <div class="bar">
+          <div class="avatar">D</div>
+          <div><div class="nm">Clínica Dental (ejemplo)</div><div class="st"><span class="dot"></span>en línea</div></div>
+        </div>
+        <div class="flag">Ejemplo · negocio y datos ficticios</div>
+        <div class="thread" id="thread"></div>
+      </div>
+      <button class="replay" id="replay" type="button">Reproducir la conversación</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+<section>
+  <h2>Lo que entró anoche, mientras el negocio estaba cerrado</h2>
+  <p>Tres mensajes reales en forma, inventados en contenido. Ninguno esperó hasta la mañana: los tres siguieron buscando.</p>
+  <div class="log">
+    <div>
+      <div class="hr">23:47</div>
+      <p class="msg">"Buenas, ¿cuánto cuesta la limpieza y atienden sábados?"</p>
+      <p class="who">Contestado a las 8:15 a.m. Ya había agendado en otro lado.</p>
+    </div>
+    <div>
+      <div class="hr">02:13</div>
+      <p class="msg">"Hi, I'm flying in on the 14th — do you take walk-ins?"</p>
+      <p class="who">Contestado en español, doce horas después.</p>
+    </div>
+    <div>
+      <div class="hr">06:05</div>
+      <p class="msg">"¿Aceptan tarjeta? ¿Tienen parqueo?"</p>
+      <p class="who">Dos preguntas que la página ya responde. Nadie las leyó.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <h2>Qué hace, en concreto</h2>
+  <ol class="steps">
+    <li><span class="n">01</span><div><h3>Contesta en segundos, a cualquier hora</h3><p>Domingo a medianoche incluido. Detecta si le escriben en inglés y responde en inglés.</p></div></li>
+    <li><span class="n">02</span><div><h3>Responde lo que le preguntan mil veces</h3><p>Horarios, ubicación, parqueo, precios, formas de pago, seguros, qué traer, cuánto dura. Solo lo que usted le cargue: no inventa nada, y si no sabe algo lo dice.</p></div></li>
+    <li><span class="n">03</span><div><h3>Toma los datos de la cita o del pedido</h3><p>Nombre, teléfono, motivo y dos opciones de horario. Le llegan a su correo o a la hoja que ya usa, listos para confirmar.</p></div></li>
+    <li><span class="n">04</span><div><h3>Sabe cuándo callarse</h3><p>Dolor, urgencias, casos delicados, alguien molesto, o cuando le piden hablar con una persona: deja de responder, lo dice, y le pasa la conversación de una.</p></div></li>
+    <li><span class="n">05</span><div><h3>Usted manda</h3><p>Entra a cualquier chat cuando quiera y el asistente se hace a un lado. Puede apagarlo en horario de oficina y dejarlo solo de noche, si prefiere.</p></div></li>
+  </ol>
+</section>
+<section id="precio">
+  <h2>Precio</h2>
+  <dl class="price">
+    <div><dt>Instalación</dt><dd>$250<small>Una vez. Incluye cargar toda su información, las pruebas y la puesta en marcha.</small></dd></div>
+    <div><dt>Mensual</dt><dd>$40<small>Servidor, número conectado y los ajustes que vaya pidiendo.</small></dd></div>
+    <div><dt>Listo en</dt><dd>1 semana<small>Desde que me pasa horarios, precios y preguntas frecuentes.</small></dd></div>
+    <div><dt>Prueba</dt><dd>14 días<small>Corriendo con clientes reales. Si no le sirve, no paga la instalación.</small></dd></div>
+  </dl>
+  <h3 style="margin-top:34px;font-size:15px">Cómo se ve esa semana</h3>
+  <ol class="week">
+    <li><b>Día 1</b><span>Una llamada de media hora: cómo funciona el negocio, qué le preguntan siempre, qué nunca debe contestar el asistente.</span></li>
+    <li><b>Días 2–3</b><span>Cargo su información y armo el asistente. Le mando el enlace para que le escriba usted mismo y me diga qué cambiar.</span></li>
+    <li><b>Día 4</b><span>Ajustes sobre lo que usted marcó: tono, precios, qué derivar a una persona.</span></li>
+    <li><b>Día 5</b><span>Se conecta a su número y queda contestando en vivo. Empiezan los 14 días de prueba.</span></li>
+    <li><b>Semana 2</b><span>Reviso las conversaciones reales con usted y afino lo que haga falta. Ese repaso está incluido.</span></li>
+  </ol>
+  <p style="margin-top:20px">Lo único que necesito de usted: el número de WhatsApp Business que ya tiene, y ese rato para contarme cómo funciona el negocio.</p>
+</section>
+<section>
+  <h2>Para quién funciona</h2>
+  <p>Cualquier negocio donde la gente pregunta antes de comprar y las preguntas se repiten.</p>
+  <div class="tags">
+    <span class="tag">inmobiliarias</span><span class="tag">clínicas dentales</span><span class="tag">veterinarias</span><span class="tag">fisioterapia</span>
+    <span class="tag">estética y spa</span><span class="tag">pilates y gimnasios</span><span class="tag">academias e institutos</span>
+    <span class="tag">escuelas de manejo</span><span class="tag">hoteles y villas</span><span class="tag">talleres automotrices</span>
+    <span class="tag">mudanzas y fletes</span><span class="tag">floristerías y eventos</span><span class="tag">fotografía de bodas</span>
+    <span class="tag">funerarias</span>
+  </div>
+</section>
+<section>
+  <h2>Si además pauta en Meta</h2>
+  <p>Los anuncios de Click-to-WhatsApp tienen un problema conocido: Meta optimiza hacia la gente que <strong>escribe</strong>, no hacia la que compra. El algoritmo nunca se entera de cuáles conversaciones valieron algo, así que le trae más conversadores.</p>
+  <p>El asistente puede cerrar ese círculo. El primer mensaje que llega de un anuncio trae el identificador del clic; cuando la conversación termina en interesado calificado o cita agendada, ese resultado vuelve a Meta por la Conversions API. Meta empieza a buscar gente parecida a la que sí calificó, y su reporte pasa a mostrar costo por lead calificado en vez de costo por chat.</p>
+  <p>Esa parte se cotiza aparte, porque depende de cómo esté conectado su número hoy. Con veinte minutos viendo su configuración le doy el precio cerrado.</p>
+</section>
+<section>
+  <h2>Preguntas que me hacen</h2>
+  <div class="faq">
+    <details open><summary>¿Tengo que cambiar de número?</summary><p>No. Va sobre el WhatsApp Business que ya usa, con el mismo número que está en su sitio, en Google y en los rótulos.</p></details>
+    <details><summary>¿Y si inventa un precio?</summary><p>No puede. Solo responde con la información que usted me pasa. Si le preguntan algo que no está ahí, dice que lo confirma con el equipo y le avisa a usted. Prefiero que se quede corto a que le prometa algo a un cliente.</p></details>
+    <details><summary>¿Puedo meterme en la conversación?</summary><p>Sí, en cualquier momento, desde el mismo WhatsApp. Cuando usted escribe, el asistente se calla.</p></details>
+    <details><summary>¿Qué pasa con una urgencia?</summary><p>Está configurado para no dar consejo médico, legal ni técnico sobre un caso concreto. Ante dolor, emergencia o algo delicado, responde con calma, ofrece la cita más pronta y le avisa a usted de inmediato.</p></details>
+    <details><summary>¿Se nota que es un robot?</summary><p>Conversa normal, sin menús numerados ni "presione 1". Y no finge ser una persona: si le preguntan directamente, lo dice y ofrece pasar la conversación.</p></details>
+    <details><summary>¿Qué necesita para funcionar?</summary><p>Horarios, ubicación, servicios, precios que quiera publicar, formas de pago, y las preguntas que más le repiten. Con la llamada de media hora del primer día suele alcanzar.</p></details>
+    <details><summary>¿Y si quiero cancelar?</summary><p>Avisa y se apaga. No hay contrato ni permanencia. Los primeros 14 días son de prueba, así que puede verlo trabajando con clientes reales antes de pagar la instalación.</p></details>
+  </div>
+</section>
+<section>
+  <div class="close">
+    <h2 style="margin-bottom:12px">Le armo el demo con los datos de su negocio</h2>
+    <p>Sin costo y sin compromiso. Me escribe qué hace su negocio, me pasa horarios y precios, y le mando el asistente funcionando para que le escriba usted mismo y vea cómo contesta. Si no le convence, ahí quedó.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Quiero%20el%20demo%20del%20asistente&amp;body=Negocio%3A%0AQu%C3%A9%20hacen%3A%0AHorario%3A%0AN%C3%BAmero%20de%20WhatsApp%3A%0A%0A">Escribirme por correo</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <strong style="color:var(--text-2);font-weight:600">Gilber García</strong> — desarrollador, San José, Costa Rica · <a href="mailto:gilbergarciata@gmail.com">gilbergarciata@gmail.com</a><br>
+  La conversación de arriba es un ejemplo escrito con un negocio ficticio, para mostrar el tono y el formato de las respuestas.
+</footer>
+</div>
+<script>
+const SCRIPT = [
+  ["out","Buenas, quería saber cuánto sale la limpieza dental y si atienden sábados"],
+  ["in","¡Buenas! Con gusto. La valoración inicial son ₡15.000 e incluye radiografía panorámica y el plan de tratamiento por escrito.\nSábados atendemos de 8 a.m. a 12 m.d."],
+  ["out","Perfecto. ¿Y aceptan tarjeta?"],
+  ["in","Sí: efectivo, tarjeta y SINPE Móvil. Para tratamientos grandes manejamos financiamiento hasta 12 meses con tarjeta.\n¿Le gustaría que le aparte un espacio?"],
+  ["out","Sí porfa, para el sábado temprano"],
+  ["in","De una. Para dejarlo anotado necesito:\n• Nombre completo\n• Número de teléfono\n• Motivo de la consulta\n\nY dígame dos opciones de hora del sábado, para confirmarle la que tengamos libre."],
+  ["out","Ana Rodríguez, 8712 3344, limpieza. 8am o 9am"],
+  ["in","Listo, doña Ana. Quedó anotado para este sábado, 8 a.m. como primera opción y 9 a.m. como alternativa. Del consultorio le confirman la hora hoy mismo.\nEstamos en San Rafael de Escazú, 200 m sur del cruce, con parqueo propio y gratis. Llegue 10 minutos antes y traiga la cédula. ¡Nos vemos!"]
+];
+const thread=document.getElementById("thread");
+const replay=document.getElementById("replay");
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let timers=[];
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function fmt(m){const h=Math.floor(m/60)%24,x=m%60;return String(h).padStart(2,"0")+":"+String(x).padStart(2,"0");}
+function add(role,text,time){
+  const el=document.createElement("div");
+  el.className="b "+(role==="out"?"out":"in");
+  el.innerHTML=esc(text)+'<span class="t">'+time+'</span>';
+  thread.appendChild(el);thread.scrollTop=thread.scrollHeight;
+}
+function play(animated){
+  timers.forEach(clearTimeout);timers=[];thread.innerHTML="";
+  const base=23*60+47;
+  if(!animated){SCRIPT.forEach((m,i)=>add(m[0],m[1],fmt(base+i)));return;}
+  let d=0;
+  SCRIPT.forEach((m,i)=>{
+    d+= i===0?250:(m[0]==="in"?850:1250);
+    timers.push(setTimeout(()=>add(m[0],m[1],fmt(base+i)),d));
+  });
+}
+play(false);
+replay.addEventListener("click",()=>play(!reduce));
+</script>
+</body>
+</html>
