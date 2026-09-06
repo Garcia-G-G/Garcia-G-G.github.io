@@ -287,7 +287,7 @@ function play(animated){
     timers.push(setTimeout(()=>add(m[0],m[1],fmt(base+i)),d));
   });
 }
-play(false);
+play(false);thread.scrollTop=0;
 replay.addEventListener("click",()=>play(!reduce));
 </script>
 </body>
