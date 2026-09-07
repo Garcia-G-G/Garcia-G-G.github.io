@@ -4,78 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rails deploys, done for you</title>
-<meta name="description" content="I set up your Rails app on a Hetzner box with Kamal 2 — server hardened, Cloudflare DNS and SSL, first deploy done, nightly Postgres backups to S3, and a walkthrough. $150, paid only once it's running.">
+<meta name="description" content="I set up your Rails app on a Hetzner box with Kamal 2 — server hardened, Cloudflare DNS and SSL, first deploy done, nightly Postgres backups to S3, and a walkthrough. $150, about a week.">
 <meta property="og:title" content="Rails deploys, done for you">
-<meta property="og:description" content="Hetzner + Kamal 2 + Cloudflare, set up on your accounts for $150. Nothing to pay until it's deployed and working.">
+<meta property="og:description" content="Hetzner + Kamal 2 + Cloudflare, set up on your own accounts. $150, about a week.">
 <meta name="theme-color" content="#0B100F">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚢</text></svg>">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --night:#0B100F; --surface:#131A18; --line:#26312D; --line-2:#33403B;
-  --text:#ECF2EE; --text-2:#AFC0B8; --muted:#7C8F86;
-  --lamp:#F0B45F; --signal:#3FC28C; --term:#0E1614;
+  --night:#0B100F; --raise:#101816; --line:#222D29; --line-2:#2E3B36;
+  --text:#ECF2EE; --text-2:#AAB9B2; --muted:#75877F;
+  --lamp:#F0B45F; --signal:#3FC28C; --term:#0D1412;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--night);color:var(--text);
-  font-family:"Archivo",system-ui,-apple-system,Segoe UI,sans-serif;font-size:16.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  font-family:"Archivo",system-ui,-apple-system,Segoe UI,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .glow{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(52vw 40vw at 82% 4%, rgba(240,180,95,.10), transparent 62%)}
-.wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 26px}
-.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--lamp)}
-h1{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(36px,5.2vw,58px);line-height:1.03;letter-spacing:-.015em;margin:16px 0 18px;text-wrap:balance}
+  background:radial-gradient(46vw 34vw at 88% 0%, rgba(240,180,95,.085), transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 28px}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(34px,4.9vw,54px);line-height:1.06;letter-spacing:-.018em;margin:18px 0 20px;text-wrap:balance}
 h1 em{font-style:italic;color:var(--lamp);font-weight:300}
-h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1.15;margin:0 0 18px;text-wrap:balance}
-h3{font-size:15.5px;font-weight:600;margin:0 0 4px}
-p{margin:0 0 15px;color:var(--text-2);max-width:62ch}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(22px,2.7vw,29px);line-height:1.2;margin:0 0 6px;letter-spacing:-.008em}
+.sub{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 26px}
+h3{font-size:15.5px;font-weight:600;margin:0 0 3px;color:var(--text)}
+p{margin:0 0 16px;color:var(--text-2);max-width:64ch}
 a{color:var(--lamp)}
-section{padding:60px 0;border-top:1px solid var(--line)}
-.hero{padding:60px 0 56px}
-.lede{font-size:19px;color:var(--text);max-width:56ch}
-.cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
-.btn{display:inline-block;background:var(--lamp);color:#231603;text-decoration:none;border-radius:11px;
-  padding:13px 22px;font-weight:600;font-size:15.5px;box-shadow:0 0 0 1px rgba(240,180,95,.35),0 10px 30px -12px rgba(240,180,95,.5)}
-.btn:hover{background:#f6c176}
-.btn.ghost{background:transparent;color:var(--text);box-shadow:none;border:1px solid var(--line-2)}
+section{padding:62px 0;border-top:1px solid var(--line)}
+.hero{padding:66px 0 58px}
+.lede{font-size:19.5px;color:var(--text);max-width:54ch;line-height:1.5}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.btn{display:inline-block;background:var(--lamp);color:#221501;text-decoration:none;border-radius:8px;
+  padding:13px 24px;font-weight:600;font-size:15.5px}
+.btn:hover{background:#f8c580}
+.btn.ghost{background:transparent;color:var(--text-2);border:1px solid var(--line-2);font-weight:500}
 .btn.ghost:hover{border-color:var(--lamp);color:var(--lamp)}
-.trust{font-size:13.5px;color:var(--muted);margin-top:15px}
-.term{background:var(--term);border:1px solid var(--line-2);border-radius:12px;overflow:hidden;margin:26px 0 0;max-width:640px}
-.term .bar{display:flex;gap:6px;padding:10px 13px;border-bottom:1px solid var(--line);align-items:center}
-.term .bar i{width:9px;height:9px;border-radius:50%;background:var(--line-2);display:block}
-.term .bar span{margin-left:8px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted)}
-.term pre{margin:0;padding:15px 16px;overflow-x:auto;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.75;color:var(--text-2)}
+.term{background:var(--term);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:32px 0 0;max-width:560px}
+.term .bar{display:flex;gap:6px;padding:9px 13px;border-bottom:1px solid var(--line);align-items:center}
+.term .bar i{width:8px;height:8px;border-radius:50%;background:var(--line-2);display:block}
+.term .bar span{margin-left:9px;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--muted)}
+.term pre{margin:0;padding:16px;overflow-x:auto;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.8;color:var(--text-2)}
 .term .p{color:var(--signal)}
 .term .c{color:var(--muted)}
 .term .k{color:var(--lamp)}
-.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.steps li{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:16px 2px;border-bottom:1px solid var(--line);align-items:start}
-.steps .n{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--lamp);padding-top:3px}
-.steps p{margin:0;font-size:14.5px}
-.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:760px}
-.price > div{background:var(--surface);padding:20px 21px;border-right:1px solid var(--line)}
-.price > div:last-child{border-right:0}
-@media(max-width:700px){.price > div{border-right:0;border-bottom:1px solid var(--line)}.price > div:last-child{border-bottom:0}}
-.price dt{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
-.price dd{margin:0;font-family:"Fraunces",serif;font-size:30px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--text)}
-.price small{display:block;font-family:"Archivo",sans-serif;font-size:13px;color:var(--muted);margin-top:7px;line-height:1.45}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-@media(max-width:760px){.two{grid-template-columns:1fr}}
-.two > div{background:var(--surface);padding:22px 22px 8px}
-.two > div:first-child{border-right:1px solid var(--line)}
-@media(max-width:760px){.two > div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
-.two h3{color:var(--text)}
-.two ul{margin:10px 0 14px;padding-left:18px;color:var(--text-2);font-size:14.5px}
-.two li{margin-bottom:7px}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:38px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.steps li:first-child{border-top:1px solid var(--line)}
+.steps .n{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--lamp)}
+.steps p{margin:0;font-size:14.5px;max-width:60ch}
+.quote{max-width:600px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13.5px}
+.quote .row{display:grid;grid-template-columns:1fr auto;gap:20px;padding:13px 0;border-bottom:1px dotted var(--line-2);align-items:baseline}
+.quote .row .l{color:var(--text)}
+.quote .row .n{color:var(--muted);font-size:11.5px;display:block;margin-top:4px;line-height:1.55;font-family:"Archivo",sans-serif}
+.quote .row .v{color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.quote .total{display:grid;grid-template-columns:1fr auto;gap:20px;padding:18px 0 0;border-top:1px solid var(--line-2);margin-top:2px;align-items:baseline}
+.quote .total .l{font-family:"Archivo",sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.quote .total .v{font-family:"Fraunces",serif;font-size:38px;color:var(--text);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.after{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);max-width:600px}
+.after .k{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:7px}
+.quiet{font-size:14px;color:var(--muted);max-width:60ch}
+.fit{list-style:none;margin:0;padding:0;max-width:66ch}
+.fit li{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-2)}
+.fit li:first-child{border-top:1px solid var(--line)}
+.fit .y{color:var(--signal);font-family:"JetBrains Mono",monospace;font-size:13px}
+.fit .n{color:var(--lamp);font-family:"JetBrains Mono",monospace;font-size:13px}
 .faq{max-width:70ch}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;padding:15px 0;font-weight:500;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:18px;color:var(--text)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;padding:16px 0;font-weight:500;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:20px;color:var(--text)}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--lamp);font-family:"JetBrains Mono",monospace}
 .faq details[open] summary::after{content:"–"}
-.faq details p{margin:0 0 17px;font-size:15px}
-.close{background:var(--surface);border:1px solid var(--line-2);border-radius:16px;padding:28px 28px 24px;max-width:640px}
-footer{border-top:1px solid var(--line);padding:28px 0 54px;color:var(--muted);font-size:13.5px}
+.faq details p{margin:0 0 18px;font-size:15px}
+footer{border-top:1px solid var(--line);padding:30px 0 56px;color:var(--muted);font-size:13.5px}
 :focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -85,11 +87,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 54px;color:var(--muted);f
 <div class="wrap">
 <div class="hero">
   <div class="eyebrow">Rails · Kamal 2 · Hetzner · Cloudflare</div>
-  <h1>I'll deploy your Rails app <em>properly</em>, once, for $150.</h1>
-  <p class="lede">Server created and hardened, DNS and SSL, Kamal configured, first deploy done, nightly Postgres backups off the machine. On your accounts. Nothing to pay until it's running.</p>
+  <h1>I'll deploy your Rails app <em>properly</em>, once.</h1>
+  <p class="lede">Server created and hardened, DNS and SSL, Kamal configured, first deploy done, nightly Postgres backups off the machine. Built on your own accounts, handed over when it works.</p>
   <div class="term">
     <div class="bar"><i></i><i></i><i></i><span>your terminal, afterwards</span></div>
-<pre><span class="c"># everything below is yours, on your accounts</span>
+<pre><span class="c"># all of this is yours, on your accounts</span>
 <span class="p">$</span> <span class="k">make</span> deploy
   Building image (amd64)... ok
   Pushing to ghcr.io/you/yourapp... ok
@@ -101,75 +103,94 @@ footer{border-top:1px solid var(--line);padding:28px 0 54px;color:var(--muted);f
 <span class="p">$</span> <span class="k">make</span> backup-now</pre>
   </div>
   <div class="cta">
-    <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Rails%20deploy%20%2D%20%24150&amp;body=What%20the%20app%20is%3A%0AWhere%20it%20runs%20now%3A%0ADatabase%20size%3A%0AAnything%20unusual%20(Sidekiq%2C%20websockets%2C%20uploads%2C%20cron)%3A%0A%0A">Tell me about your app</a>
-    <a class="btn ghost" href="#what">What's included</a>
+    <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Rails%20deploy&amp;body=What%20the%20app%20is%3A%0AWhere%20it%20runs%20now%3A%0ADatabase%20size%3A%0AAnything%20unusual%20(Sidekiq%2C%20websockets%2C%20uploads%2C%20cron)%3A%0A%0A">Tell me about your app</a>
+    <a class="btn ghost" href="#scope">What's included</a>
   </div>
-  <p class="trust">Payment after it's deployed and working. If I can't get it running, you owe nothing.</p>
 </div>
 </div>
 <div class="wrap">
-<section id="what">
+<section id="scope">
   <h2>What I actually do</h2>
+  <p class="sub">Six steps · about a week</p>
   <ol class="steps">
     <li><span class="n">01</span><div><h3>Create and harden the server</h3><p>Hetzner box created through the API on your account. Docker, a non-root deploy user, ufw limited to 22/80/443, fail2ban, unattended security upgrades, swap, sshd locked to keys only.</p></div></li>
     <li><span class="n">02</span><div><h3>DNS and TLS</h3><p>Cloudflare A record, SSL mode set to Full (strict) so you don't get the redirect loop, and Let's Encrypt issued correctly on the first try.</p></div></li>
-    <li><span class="n">03</span><div><h3>Kamal 2, configured for a real app</h3><p>Your <code>deploy.yml</code> with Postgres and Redis as accessories bound to loopback, a worker role for Sidekiq or Solid Queue, volumes for Active Storage, <code>asset_path</code> so you don't get 404s mid-deploy, and a healthcheck that means something.</p></div></li>
+    <li><span class="n">03</span><div><h3>Kamal 2, configured for a real app</h3><p>Your deploy.yml with Postgres and Redis as accessories bound to loopback, a worker role for Sidekiq or Solid Queue, volumes for Active Storage, asset_path so you don't get 404s mid-deploy, and a healthcheck that means something.</p></div></li>
     <li><span class="n">04</span><div><h3>Data moved, if there is any</h3><p>Database dumped from wherever it lives now and restored on the box, extensions checked, uploads moved onto the volume. Cut over with a low TTL so the rollback is one DNS change.</p></div></li>
-    <li><span class="n">05</span><div><h3>Backups that leave the machine</h3><p>Nightly <code>pg_dump</code> pushed to any S3-compatible bucket, with retention. And one restore tested in front of you, because a backup you've never restored is a guess.</p></div></li>
+    <li><span class="n">05</span><div><h3>Backups that leave the machine</h3><p>Nightly pg_dump pushed to any S3-compatible bucket, with retention. And one restore tested in front of you, because a backup you've never restored is a guess.</p></div></li>
     <li><span class="n">06</span><div><h3>A walkthrough, and then it's yours</h3><p>Half an hour on a call: how to deploy, how to roll back, how to read logs, how to open a console, what to do when it won't boot. Plus the troubleshooting doc for the 14 errors you'll eventually hit.</p></div></li>
   </ol>
 </section>
 <section>
-  <h2>Price</h2>
-  <dl class="price">
-    <div><dt>One-off</dt><dd>$150<small>The whole setup above. No retainer, no subscription.</small></dd></div>
-    <div><dt>You pay</dt><dd>After<small>Once it's deployed and working. If I can't, you owe nothing.</small></dd></div>
-    <div><dt>Typical</dt><dd>2 days<small>From the moment I have repo access and the API tokens.</small></dd></div>
-    <div><dt>Your cost after</dt><dd>~€8<small>Per month, to Hetzner, directly. Not to me.</small></dd></div>
-  </dl>
-  <p style="margin-top:18px">Everything is created on <strong>your</strong> accounts — Hetzner, Cloudflare, GitHub, the S3 bucket. I never hold your infrastructure hostage, and when we're done you don't need me.</p>
-</section>
-<section>
-  <h2>Who this is and isn't for</h2>
-  <div class="two">
-    <div>
-      <h3 style="color:var(--signal)">Worth it</h3>
-      <ul>
-        <li>You're paying Heroku or Render more than $50/month for something that fits on one box.</li>
-        <li>You have several small apps — the second and third cost almost nothing on the same server.</li>
-        <li>You've been meaning to move for months and it keeps losing to feature work.</li>
-        <li>You want to own the setup but not spend two evenings learning Kamal's sharp edges first.</li>
-      </ul>
+  <h2>The quote</h2>
+  <p class="sub">Fixed price · no retainer</p>
+  <div class="quote">
+    <div class="row">
+      <div class="l">Setup, end to end
+        <span class="n">The six steps above, on your Hetzner, Cloudflare, GitHub and S3 accounts.</span>
+      </div>
+      <div class="v">$150</div>
     </div>
-    <div>
-      <h3 style="color:var(--lamp)">Not worth it</h3>
-      <ul>
-        <li>You need real high availability. One box is one box, and rebuilding that on your own costs more than the platform you're leaving.</li>
-        <li>The app is pre-revenue and your time is better spent shipping than saving $1,200 a year.</li>
-        <li>You have no interest in servers at all and nobody to call. A managed platform is cheap insurance against your own 3am.</li>
-      </ul>
+    <div class="row">
+      <div class="l">Delivery
+        <span class="n">From the day I have repo access and the API tokens. Longer if the app has surprises, and I'll tell you before we start.</span>
+      </div>
+      <div class="v">1 week</div>
+    </div>
+    <div class="row">
+      <div class="l">Handover call
+        <span class="n">Deploying, rolling back, logs, console, and what to do when it won't boot.</span>
+      </div>
+      <div class="v">included</div>
+    </div>
+    <div class="row">
+      <div class="l">Ongoing fee to me
+        <span class="n">There isn't one. You deploy with one command and you don't need me afterwards.</span>
+      </div>
+      <div class="v">$0</div>
+    </div>
+    <div class="total">
+      <div class="l">Total, one time</div>
+      <div class="v">$150</div>
     </div>
   </div>
-  <p style="margin-top:18px">I'd rather tell you not to bother than take $150 for something you'll regret in a month.</p>
+  <div class="after">
+    <span class="k">What you'll pay after, and to whom</span>
+    <p class="quiet">Your infrastructure bill goes to Hetzner directly, not through me. For a production app with a volume for uploads and a bucket for backups, budget <strong style="color:var(--text-2)">€15–25 a month</strong> — more if the app is heavy enough to need a bigger box. That's the honest number, not the price of the smallest server on the list.</p>
+  </div>
+</section>
+<section>
+  <h2>Whether it's worth it</h2>
+  <p class="sub">I'd rather talk you out of it than take the money</p>
+  <ul class="fit">
+    <li><span class="y">yes</span><span>You're paying a platform more than $50 a month for something that fits on one box.</span></li>
+    <li><span class="y">yes</span><span>You have several small apps — the second and third cost almost nothing on the same server.</span></li>
+    <li><span class="y">yes</span><span>You've been meaning to move for months and it keeps losing to feature work.</span></li>
+    <li><span class="y">yes</span><span>You want to own the setup without spending two evenings learning Kamal's sharp edges first.</span></li>
+    <li><span class="n">no</span><span>You need real high availability. One box is one box, and rebuilding that yourself costs more than the platform you're leaving.</span></li>
+    <li><span class="n">no</span><span>The app is pre-revenue and your time is worth more shipping features than saving a hosting bill.</span></li>
+    <li><span class="n">no</span><span>You have no interest in servers and nobody to call. A managed platform is cheap insurance against your own 3am.</span></li>
+  </ul>
 </section>
 <section>
   <h2>Questions</h2>
+  <p class="sub">The ones people actually ask</p>
   <div class="faq">
     <details open><summary>What do you need from me?</summary><p>Read access to the repo, a Hetzner API token, a Cloudflare API token scoped to the one zone, and a GitHub token for the container registry. All created by you, all revocable the moment we're done.</p></details>
     <details><summary>Do I have to give you production data?</summary><p>No. If you'd rather move the database yourself, I'll set everything else up and hand you the exact commands. Plenty of people prefer that.</p></details>
-    <details><summary>What if my app is weird?</summary><p>Tell me how before you pay anything. Websockets, background jobs, cron, multiple domains, a big uploads directory, an old Rails version — most of it is fine, some of it changes the plan, and a couple of things mean I'll tell you this isn't the right move.</p></details>
-    <details><summary>What happens after?</summary><p>Nothing, unless you want it. You deploy with one command and pay Hetzner directly. If you'd rather I stayed on for changes, we can agree that separately — but the $150 is not a hook for a subscription.</p></details>
-    <details><summary>Can I just do it myself?</summary><p>Yes, and you should if you enjoy it. The kit with all the scripts and the troubleshooting doc is $10: <a href="https://payhip.com/b/yrO3i">payhip.com/b/yrO3i</a>. I also write about it — the <a href="https://dev.to/exo02934">articles are free</a>.</p></details>
-    <details><summary>Who are you?</summary><p>Gilber García, a developer in San José, Costa Rica. Rails and DevOps: Docker, Kamal, Hetzner, Cloudflare. I do this setup for my own projects constantly, which is why it's a fixed price instead of an hourly estimate.</p></details>
+    <details><summary>What if my app is weird?</summary><p>Tell me how before anything is agreed. Websockets, background jobs, cron, multiple domains, a big uploads directory, an old Rails version — most of it is fine, some of it changes the plan, and a couple of things mean I'll tell you this isn't the right move.</p></details>
+    <details><summary>What if it doesn't work?</summary><p>Then you don't pay. I've done this setup enough times to quote it as a fixed price, but the risk of a surprise is mine, not yours.</p></details>
+    <details><summary>What happens after?</summary><p>Nothing, unless you want it. You deploy with one command and pay Hetzner directly. If you'd rather I stayed on for changes, we agree that separately — the $150 isn't a hook for a subscription.</p></details>
+    <details><summary>Can I just do it myself?</summary><p>Yes, and you should if you enjoy it. The kit with all the scripts and the troubleshooting doc is $10: <a href="https://payhip.com/b/yrO3i">payhip.com/b/yrO3i</a>, and the <a href="https://dev.to/exo02934">articles are free</a>.</p></details>
+    <details><summary>Who are you?</summary><p>Gilber García, a developer in San José, Costa Rica. Rails and DevOps: Docker, Kamal, Hetzner, Cloudflare. I run this exact setup for my own projects, which is why it's a fixed price instead of an hourly estimate.</p></details>
   </div>
 </section>
 <section>
-  <div class="close">
-    <h2 style="margin-bottom:12px">Tell me about your app</h2>
-    <p>What it is, where it runs now, roughly how big the database is, and anything unusual — background jobs, websockets, uploads, cron. I'll reply with whether it's a good fit, what the plan looks like, and how long it'll take. If it isn't a good fit I'll say so.</p>
-    <div class="cta">
-      <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Rails%20deploy%20%2D%20%24150&amp;body=What%20the%20app%20is%3A%0AWhere%20it%20runs%20now%3A%0ADatabase%20size%3A%0AAnything%20unusual%20(Sidekiq%2C%20websockets%2C%20uploads%2C%20cron)%3A%0A%0A">Email me</a>
-    </div>
+  <h2>Tell me about your app</h2>
+  <p class="sub">I'll say whether it's a good fit — including when it isn't</p>
+  <p>What it is, where it runs now, roughly how big the database is, and anything unusual: background jobs, websockets, uploads, cron. I'll come back with the plan and the timeline.</p>
+  <div class="cta">
+    <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Rails%20deploy&amp;body=What%20the%20app%20is%3A%0AWhere%20it%20runs%20now%3A%0ADatabase%20size%3A%0AAnything%20unusual%20(Sidekiq%2C%20websockets%2C%20uploads%2C%20cron)%3A%0A%0A">Email me</a>
   </div>
 </section>
 <footer>
