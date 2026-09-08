@@ -356,6 +356,77 @@ const QA = [
 
 /* ---- demos por prospecto: ?p=slug ---- */
 const DEMOS = {
+  montero: {
+    name: "Montero Smile Art", av: "M", en: false,
+    tag: "Demo armado con información pública de Montero Smile Art",
+    qa: [
+      { q:"¿Cuánto cuesta un implante?",
+        a:"El implante se cotiza después de la valoración, porque depende del hueso y de si hace falta injerto.\nLa valoración incluye radiografía y plan de tratamiento por escrito. ¿Le busco campo esta semana?" },
+      { q:"How many days do I need to stay?", en:true,
+        a:"For a single implant, most patients plan two visits: placement and then the crown a few months later.\nAre you traveling from abroad? I'll note it so the coordinator gives you the exact schedule." },
+      { q:"¿Tienen parqueo?",
+        a:"Sí. Estamos 400 m sur de la Torre Universal, Sabana Sur, en el edificio Montero Smile Art." },
+      { q:"Se me cayó un diente, ¿soy candidato?",
+        a:"Eso no se lo puedo decir por acá: depende del hueso que quede y eso solo se ve con radiografía.\nLe aviso ya al doctor y le apartan un espacio para valorarlo.",
+        note:"No dice quién es candidato. Escala." },
+      { q:"¿Me dan el precio exacto por acá?",
+        a:"No le voy a dar un número que después no se cumpla. Se lo confirman con el plan de tratamiento en mano.",
+        note:"Prefiere quedarse corto a prometer." }
+    ]
+  },
+  tibas: {
+    name: "Ortodoncia Tibás", av: "T", en: false,
+    tag: "Demo armado con información pública de Ortodoncia Tibás",
+    qa: [
+      { q:"¿Cuánto vale la limpieza?",
+        a:"Este mes tenemos promoción en limpieza dental. Le confirmo el monto exacto y le aparto campo.\n¿Le sirve entre semana o prefiere sábado?" },
+      { q:"¿Cuánto dura un tratamiento de brackets?",
+        a:"Varía mucho según el caso; lo real se lo dice la ortodoncista en la valoración.\nLo que sí le puedo decir es qué incluye la primera cita y cuánto cuesta. ¿Se la agendo?" },
+      { q:"¿Dónde quedan?",
+        a:"Costado oeste del Parque de Tibás, contiguo a Soda Tikal, Edificio San Miguel, segundo piso." },
+      { q:"¿Me pueden decir si necesito brackets?",
+        a:"Eso no lo puedo valorar por mensaje. Le paso el caso a la doctora y una persona del equipo le escribe.",
+        note:"No diagnostica. Avisa y pasa." },
+      { q:"Do you speak English?", en:true,
+        a:"Yes, I can help you in English.\nAre you looking for a cleaning, braces, or a general check-up?" }
+    ]
+  },
+  essential: {
+    name: "Essential Dental Care", av: "E", en: false,
+    tag: "Demo armado con información pública de Essential Dental Care",
+    qa: [
+      { q:"¿Qué tratamientos hacen?",
+        a:"Prevención y salud oral, estética dental, implantes y ortodoncia.\n¿Cuál de esos le interesa? Con eso le digo qué incluye la primera cita." },
+      { q:"¿Aceptan tarjeta?",
+        a:"Sí, y para tratamientos grandes se puede conversar financiamiento.\nEso se lo confirman en la clínica con el plan ya armado." },
+      { q:"Quiero una cita",
+        a:"Con gusto. Necesito:\n• Nombre completo\n• Teléfono\n• Motivo de la consulta\n\nY deme dos opciones de horario para confirmarle la que esté libre." },
+      { q:"Tengo una muela partida y me duele",
+        a:"Lamento que esté con dolor. No puedo valorarlo por acá, así que le aviso ya mismo a la clínica y le escriben enseguida.\n¿Le aparto el espacio más pronto mientras tanto?",
+        note:"Se detiene y avisa. No diagnostica." },
+      { q:"¿Cuánto sale una carilla?",
+        a:"Esa no la tengo cargada. Se la consultan y le confirman hoy mismo.",
+        note:"Lo que no está cargado, no lo inventa." }
+    ]
+  },
+  iris: {
+    name: "Ópticas Iris", av: "I", en: false,
+    tag: "Demo armado con información pública de Ópticas Iris",
+    qa: [
+      { q:"¿Hacen examen de la vista?",
+        a:"Sí. ¿Es para lentes nuevos o para revisar los que ya usa?\nCon eso le digo cuánto dura la cita y le aparto campo." },
+      { q:"¿Cuánto valen unos lentes?",
+        a:"Depende del aro y del lente; el rango real se lo dan en tienda con la fórmula en mano.\nLo que sí le confirmo por acá es el costo del examen y los horarios." },
+      { q:"Traigo mi fórmula del oftalmólogo",
+        a:"Perfecto, con la fórmula se puede trabajar directo.\n¿Me la manda por foto y le digo qué opciones le calzan?" },
+      { q:"Veo borroso de lejos, ¿qué tengo?",
+        a:"Eso no se lo puedo decir yo; hace falta el examen.\nLe aparto campo y ahí se lo revisan bien.",
+        note:"No diagnostica la vista de nadie." },
+      { q:"¿Me garantizan que voy a ver bien?",
+        a:"No prometo resultados. Lo que sí le confirmo es qué incluye el examen y la garantía de los lentes.",
+        note:"No promete lo que no puede cumplir." }
+    ]
+  },
   casaescazu: {
     name: "Casa Escazú", av: "C", en: false,
     tag: "Demo armado con información pública de Casa Escazú",
