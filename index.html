@@ -354,6 +354,100 @@ const QA = [
     note:"Lo que no está cargado, no lo inventa." }
 ];
 
+/* ---- demos por prospecto: ?p=slug ---- */
+const DEMOS = {
+  casaescazu: {
+    name: "Casa Escazú", av: "C", en: false,
+    tag: "Demo armado con información pública de Casa Escazú",
+    qa: [
+      { q:"¿Qué tienen en Santa Ana?",
+        a:"En Santa Ana manejamos casas en condominio y lotes.\nPara filtrarle bien: ¿es para comprar o alquilar, y cuántas habitaciones necesita?" },
+      { q:"Busco algo hasta $350.000",
+        a:"Perfecto, con eso ya puedo apuntar.\n• ¿Escazú, Santa Ana o le da igual entre las dos?\n• ¿Cuántas habitaciones?\n• ¿Para cuándo lo necesita?\n\nCon esas tres se lo paso al asesor con todo anotado." },
+      { q:"Do you handle rentals?", en:true,
+        a:"Yes. We handle both sales and long-term rentals in Escazú and Santa Ana.\nWhat's your monthly budget, and how many bedrooms do you need?" },
+      { q:"¿Me financian la compra?",
+        a:"Eso depende del banco y de su perfil, así que no le voy a dar un número por acá.\nLe paso el caso al asesor y él le explica las opciones reales.",
+        note:"No promete crédito. Escala." },
+      { q:"¿Cuánto vale la casa de la foto?",
+        a:"Esa no la tengo cargada. Se la consulto al equipo y le confirman hoy mismo.",
+        note:"Lo que no está cargado, no lo inventa." }
+    ]
+  },
+  osa: {
+    name: "Osa Land Office", av: "O", en: true,
+    tag: "Demo built from Osa Land Office's public information",
+    qa: [
+      { q:"Is that beachfront property titled?", en:true,
+        a:"Most beachfront on the Osa is maritime zone concession, not title — they are very different things to own.\nWhich listing are you looking at? I'll confirm with the broker rather than guess." },
+      { q:"What do you need to know from me?", en:true,
+        a:"Four things, and then a person takes over:\n• Budget range\n• Titled land or concession\n• Timeline\n• Cash or financing\n\nWant to go through them now?" },
+      { q:"Can I get residency by buying land?", en:true,
+        a:"I'm not able to give legal or immigration advice, and I won't guess on that one.\nI'll pass this to Jeff — he's been brokering on the Osa for 35 years and can point you to the right attorney.",
+        note:"Legal question. It stops and escalates." },
+      { q:"¿Hablan español?",
+        a:"Claro que sí. Con gusto le atiendo en español.\n¿Está buscando comprar o vender en la península de Osa?" },
+      { q:"What's the cheapest lot you have?", en:true,
+        a:"I don't have live pricing loaded, so I won't quote you a number that might be wrong.\nI'll get the current list from the office and they'll write you back.",
+        note:"No price it isn't sure of." }
+    ]
+  },
+  fortress: {
+    name: "Fortress Realty", av: "F", en: true,
+    tag: "Demo built from Fortress Realty's public information",
+    qa: [
+      { q:"I'm looking at beachfront, where do I start?", en:true,
+        a:"Best first: budget range, which coast, and whether you want titled land or are open to concession.\nAnswer those three and Paul gets your note with everything already written down." },
+      { q:"Do you work with US buyers?", en:true,
+        a:"Yes — Paul and Janene have been in Costa Rica ten years and work in English and Spanish.\nWhere are you writing from, and what's your timeline?" },
+      { q:"What are the closing costs?", en:true,
+        a:"That depends on the property and the structure, so I'd rather not throw a number at you.\nI'll pass this to Paul with your question exactly as you wrote it.",
+        note:"Won't estimate. Hands it over." },
+      { q:"Can you send me the listing sheet?", en:true,
+        a:"Sure — which property? Send me the name or the link and I'll have it sent to you.\nWhat's the best email for it?" },
+      { q:"Who owns this agency?", en:true,
+        a:"Paul and Janene. If you'd like to speak with one of them directly, I'll set that up.",
+        note:"Never pretends to be a person." }
+    ]
+  },
+  leiton: {
+    name: "Propiedades Leiton", av: "L", en: false,
+    tag: "Demo armado con información pública de Propiedades Leiton",
+    qa: [
+      { q:"¿Qué tienen en alquiler?",
+        a:"Manejamos alquiler y venta.\nPara mostrarle solo lo que le sirve: ¿en qué zona, cuántas habitaciones y cuánto tiene pensado de presupuesto mensual?" },
+      { q:"Quiero vender mi casa",
+        a:"Con gusto. Para pasarle el caso a Roxana necesito:\n• Zona y tipo de propiedad\n• Metros de terreno y de construcción\n• Si está inscrita a su nombre\n• Un teléfono\n\n¿Empezamos por la zona?" },
+      { q:"Do you have listings in English?", en:true,
+        a:"Yes, I can help you in English.\nWhat area are you looking in, and is this to buy or to rent?" },
+      { q:"¿En cuánto puedo vender mi casa?",
+        a:"No le puedo dar un valor por acá; eso sale del avalúo y de cómo esté el mercado en su zona.\nLe paso los datos a Roxana y ella le da el rango real.",
+        note:"No tasa por WhatsApp." },
+      { q:"¿Cobran comisión al comprador?",
+        a:"Esa la confirmo con la oficina para no darle un dato equivocado. Le escriben hoy.",
+        note:"Prefiere quedarse corto a prometer." }
+    ]
+  }
+};
+
+var GREET = "¡Buenas! Soy el asistente de la clínica. Pregúnteme lo que necesite y le contesto de una.";
+var DONE = "Eso es todo lo que le cargué a este ejemplo. El suyo lleva lo suyo.";
+(function(){
+  const slug = new URLSearchParams(location.search).get("p");
+  const d = slug && DEMOS[slug];
+  if(!d) return;
+  document.querySelector(".phone .who").textContent = d.name;
+  document.querySelector(".phone .av").textContent = d.av;
+  document.querySelector(".phone .tag").textContent = d.tag;
+  document.querySelector(".phone .asks p").textContent = d.en ? "Ask it something" : "Pregúntele algo";
+  QA.length = 0; d.qa.forEach(x=>QA.push(x));
+  GREET = d.en ? ("Hi! I'm "+d.name+"'s assistant. Ask me anything and I'll answer right away.") : ("¡Buenas! Soy el asistente de "+d.name+". Pregúnteme lo que necesite y le contesto de una.");
+  DONE = d.en ? "That's everything loaded into this example. Yours would carry your own information." : "Eso es todo lo que le cargué a este ejemplo. El suyo lleva lo suyo.";
+  const f = document.querySelector("footer");
+  if(f) f.innerHTML = f.innerHTML.replace(/La conversación de arriba[^·]*·/,
+    (d.en ? "The conversation above runs on information published on "+d.name+"'s own site. Nothing confidential, nothing invented." : "La conversación de arriba corre con información publicada en el sitio de "+d.name+". Nada confidencial, nada inventado.")+" ·");
+})();
+
 const thread = document.getElementById("thread");
 const chips  = document.getElementById("chips");
 const reset  = document.getElementById("reset");
@@ -417,7 +511,7 @@ function ask(i, btn){
     if (!chips.querySelector("button")) {
       const done = document.createElement("span");
       done.style.cssText = "font-size:13.5px;color:var(--faint)";
-      done.textContent = "Eso es todo lo que le cargué a este ejemplo. El suyo lleva lo suyo.";
+      done.textContent = DONE;
       chips.appendChild(done);
     }
   }, wait);
@@ -428,7 +522,7 @@ function build(){
   chips.innerHTML = "";
   clock = 23*60 + 12;
   busy = false;
-  bubble("them", "¡Buenas! Soy el asistente de la clínica. Pregúnteme lo que necesite y le contesto de una.");
+  bubble("them", GREET);
   QA.forEach((item, i) => {
     const b = document.createElement("button");
     b.type = "button";
