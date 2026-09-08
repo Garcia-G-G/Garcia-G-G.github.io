@@ -356,6 +356,42 @@ const QA = [
 
 /* ---- demos por prospecto: ?p=slug ---- */
 const DEMOS = {
+  herway: {
+    name: "Her Way Costa Rica", av: "H", en: false,
+    tag: "Demo armado con información pública de Her Way Costa Rica",
+    qa: [
+      { q:"¿Todavía hay campo para Perú?",
+        a:"Perú aparece agotado en la programación 2026.\n¿Le anoto en la lista de espera por si se libera un campo, y le paso las fechas que sí tienen disponibles?" },
+      { q:"¿Voy sola, con quién viajo?",
+        a:"Los viajes son en grupo de mujeres, acompañados por el equipo. La mayoría llega sola y ahí se arma el grupo.\n¿Cuál destino le está llamando la atención?" },
+      { q:"¿Qué incluye el viaje?",
+        a:"Eso cambia según el destino, así que no le voy a dar una lista genérica.\nDígame cuál viaje le interesa y le paso el detalle exacto de ese." },
+      { q:"¿Necesito visa para ese país?",
+        a:"No le puedo dar información migratoria; eso depende de su pasaporte y cambia seguido.\nSe lo consulto al equipo y le confirman con la fuente oficial.",
+        note:"No da consejo migratorio. Nunca." },
+      { q:"¿Es seguro?",
+        a:"Le puedo contar cómo se maneja la logística y quién acompaña el grupo, pero no le voy a prometer nada que no dependa de nosotras.\n¿Quiere que le llame alguien del equipo?",
+        note:"No promete lo que no controla." }
+    ]
+  },
+  volarte: {
+    name: "Volarte", av: "V", en: false,
+    tag: "Demo armado con información pública de Volarte",
+    qa: [
+      { q:"¿Cuánto sale el viaje a Noruega?",
+        a:"El precio depende de fechas, aerolínea y cuántos viajan, así que no le doy un número suelto.\nDígame fechas aproximadas y cuántas personas y le arman la cotización real." },
+      { q:"¿Qué destinos manejan?",
+        a:"Ahorita hay salidas armadas a Noruega, Perú, Bolivia y Turquía, además de viajes a la medida.\n¿Cuál le interesa?" },
+      { q:"¿Se puede pagar en tractos?",
+        a:"Se manejan opciones de pago. Le confirmo las condiciones exactas con el asesor, para no darle un dato equivocado." },
+      { q:"¿Me ayudan con la visa?",
+        a:"Puedo anotarle la consulta, pero no doy asesoría migratoria ni le voy a decir si se la aprueban.\nEso lo ve el asesor con usted y con la fuente oficial.",
+        note:"No opina sobre visas. Escala." },
+      { q:"¿Me garantizan el precio de hoy?",
+        a:"No. Las tarifas aéreas cambian y no le voy a congelar un precio que no puedo sostener.\nEl asesor le dice hasta cuándo le sirve la cotización.",
+        note:"Prefiere quedarse corto a prometer." }
+    ]
+  },
   montero: {
     name: "Montero Smile Art", av: "M", en: false,
     tag: "Demo armado con información pública de Montero Smile Art",
