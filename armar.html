@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ármelo usted mismo</title>
+<meta name="description" content="Escriba las tres preguntas que más le repiten por WhatsApp y vea, aquí mismo, cómo las contestaría un asistente. Sin registro, sin costo, en un minuto.">
+<meta property="og:title" content="Ármelo usted mismo">
+<meta property="og:description" content="Tres preguntas suyas. Un asistente contestándolas. Un minuto.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0D1117">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Gloock&family=Newsreader:opsz,wght@6..72,300..600&display=swap">
+<script defer data-domain="garcia-g-g.github.io" src="https://plausible.io/js/script.outbound-links.js"></script>
+<style>
+:root{
+  --ink:#0D1117; --ink-2:#141C21; --ink-3:#1A242A;
+  --rule:#212C33; --rule-2:#2E3C45;
+  --paper:#EDE8DE; --paper-2:#BFB9AD; --faint:#87827A;
+  --lamp:#E8A33D; --green:#5FB98E; --green-dim:#1E2C25;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);
+  font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.6;
+  font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(46vw 34vw at 78% -8%, rgba(232,163,61,.11), transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 26px}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 0;border-bottom:1px solid var(--rule)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand b{font-family:"Gloock",Georgia,serif;font-weight:400;font-size:18px}
+.brand a{color:inherit;text-decoration:none}
+.tt{font-family:"Courier Prime",monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint)}
+h1{font-family:"Gloock",Georgia,serif;font-weight:400;
+  font-size:clamp(32px,4.2vw,48px);line-height:1.1;letter-spacing:-.012em;
+  margin:0 0 18px;text-wrap:balance}
+h1 .em{color:var(--lamp)}
+.lede{font-size:19.5px;color:var(--paper-2);margin:0 0 12px;max-width:46ch}
+.lede strong{color:var(--paper);font-weight:600}
+.beat{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.06em;
+  color:var(--lamp);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:start;
+  padding:48px 0 64px}
+@media(max-width:900px){.grid{grid-template-columns:1fr;gap:38px;padding:34px 0 44px}}
+
+label{display:block;font-family:"Courier Prime",monospace;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 6px}
+input,textarea{width:100%;background:var(--ink-2);border:1px solid var(--rule-2);
+  color:var(--paper);font:400 16.5px "Newsreader",serif;padding:10px 12px;
+  border-radius:4px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--lamp)}
+input::placeholder,textarea::placeholder{color:#5c5852}
+.field{margin:0 0 18px}
+.pair{border-left:2px solid var(--rule);padding:0 0 0 16px;margin:0 0 20px}
+.pair .n{font-family:"Courier Prime",monospace;font-size:10.5px;letter-spacing:.1em;
+  color:var(--lamp);margin:0 0 8px}
+.hint{font-size:14.5px;color:var(--faint);margin:6px 0 0}
+.btn{display:inline-block;background:var(--lamp);color:#251603;text-decoration:none;
+  border:0;cursor:pointer;padding:13px 24px;font-family:"Newsreader",serif;
+  font-weight:600;font-size:17px;border-radius:3px}
+.btn:hover{background:#f2b455}
+.btn.line{background:transparent;color:var(--paper);border:1px solid var(--rule-2)}
+.btn.line:hover{border-color:var(--lamp);color:var(--lamp)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:22px 0 0}
+
+.phone{border:1px solid var(--rule-2);border-radius:10px;background:var(--ink-2);
+  overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);position:sticky;top:20px}
+.phone .top{display:flex;align-items:center;gap:10px;padding:12px 15px;
+  background:var(--ink-3);border-bottom:1px solid var(--rule)}
+.phone .av{width:32px;height:32px;border-radius:50%;background:var(--green-dim);
+  display:grid;place-items:center;font-family:"Gloock",serif;font-size:15px;color:var(--green)}
+.phone .who{font-size:15px;font-weight:600;line-height:1.2}
+.phone .st{font-family:"Courier Prime",monospace;font-size:10px;color:var(--green)}
+.phone .tag{font-family:"Courier Prime",monospace;font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);padding:6px 15px;background:var(--ink-3);
+  border-bottom:1px solid var(--rule)}
+.thread{padding:15px;display:flex;flex-direction:column;gap:9px;
+  height:340px;overflow-y:auto;scrollbar-width:thin}
+.msg{max-width:88%;padding:9px 12px;font-size:15px;line-height:1.45;
+  white-space:pre-wrap;border-radius:9px;animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.msg{animation:none}}
+.msg.them{align-self:flex-start;background:var(--ink-3);border-bottom-left-radius:3px}
+.msg.you{align-self:flex-end;background:var(--green-dim);border-bottom-right-radius:3px}
+.msg .t{display:block;font-family:"Courier Prime",monospace;font-size:9.5px;
+  color:var(--faint);text-align:right;margin-top:4px}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;
+  background:var(--ink-3);border-radius:9px;border-bottom-left-radius:3px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--faint);animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}
+.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.asks{padding:12px 15px 15px;border-top:1px solid var(--rule);background:var(--ink-3)}
+.asks p{margin:0 0 9px;font-family:"Courier Prime",monospace;font-size:10px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:transparent;border:1px solid var(--rule-2);color:var(--paper-2);
+  font:400 13.5px "Newsreader",serif;padding:6px 11px;border-radius:16px;cursor:pointer}
+.chip:hover:not(:disabled){border-color:var(--lamp);color:var(--lamp)}
+.chip:disabled{opacity:.32;cursor:default}
+.reset{background:none;border:0;color:var(--faint);font:400 13px "Newsreader",serif;
+  cursor:pointer;padding:8px 0 0;text-decoration:underline;text-underline-offset:3px}
+.reset:hover{color:var(--lamp)}
+.empty{padding:26px 18px;color:var(--faint);font-size:15px;text-align:center}
+
+section{padding:46px 0;border-top:1px solid var(--rule)}
+h2{font-family:"Gloock",Georgia,serif;font-weight:400;font-size:clamp(24px,3vw,31px);
+  line-height:1.2;margin:0 0 10px;letter-spacing:-.008em}
+p{margin:0 0 15px;color:var(--paper-2)}
+p strong{color:var(--paper);font-weight:600}
+.share{margin:20px 0 0;padding:16px;border:1px dashed var(--rule-2);border-radius:6px;display:none}
+.share.on{display:block}
+.share code{display:block;font-family:"Courier Prime",monospace;font-size:12.5px;
+  color:var(--lamp);word-break:break-all;margin:0 0 12px;line-height:1.5}
+footer{padding:34px 0 60px;border-top:1px solid var(--rule);
+  font-size:14.5px;color:var(--faint)}
+footer a{color:var(--paper-2)}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+
+  <div class="mast">
+    <div class="brand"><span class="tt">🌙</span><b><a href="./">El turno de la noche</a></b></div>
+    <span class="tt">Ármelo usted mismo</span>
+  </div>
+
+  <div class="grid">
+    <div>
+      <p class="beat">SIN REGISTRO · SIN CORREO · UN MINUTO</p>
+      <h1>Escriba las tres preguntas <span class="em">que le repiten todos los días.</span></h1>
+      <p class="lede">No hace falta reunión ni brief. Escríbalas acá y vea, del lado derecho, cómo se las contestaría un asistente en el WhatsApp de su negocio.</p>
+      <p class="lede"><strong>La respuesta puede quedar en blanco.</strong> Si la deja vacía, verá algo más útil todavía: qué hace el asistente cuando no sabe.</p>
+
+      <div class="field" style="margin-top:30px">
+        <label for="neg">Nombre del negocio</label>
+        <input id="neg" type="text" maxlength="34" placeholder="Clínica Dental Los Ángeles" autocomplete="organization">
+      </div>
+
+      <div class="pair">
+        <p class="n">PREGUNTA 1</p>
+        <div class="field"><label for="q1">Lo que le escriben</label>
+          <input id="q1" type="text" maxlength="60" placeholder="¿Cuánto vale una limpieza?"></div>
+        <div class="field" style="margin-bottom:0"><label for="a1">Lo que usted contesta hoy</label>
+          <textarea id="a1" rows="2" maxlength="300" placeholder="Déjelo en blanco si prefiere no dar ese dato por chat."></textarea></div>
+      </div>
+
+      <div class="pair">
+        <p class="n">PREGUNTA 2</p>
+        <div class="field"><label for="q2">Lo que le escriben</label>
+          <input id="q2" type="text" maxlength="60" placeholder="¿A qué hora abren el sábado?"></div>
+        <div class="field" style="margin-bottom:0"><label for="a2">Lo que usted contesta hoy</label>
+          <textarea id="a2" rows="2" maxlength="300"></textarea></div>
+      </div>
+
+      <div class="pair">
+        <p class="n">PREGUNTA 3</p>
+        <div class="field"><label for="q3">Lo que le escriben</label>
+          <input id="q3" type="text" maxlength="60" placeholder="¿Dónde quedan?"></div>
+        <div class="field" style="margin-bottom:0"><label for="a3">Lo que usted contesta hoy</label>
+          <textarea id="a3" rows="2" maxlength="300"></textarea></div>
+      </div>
+
+      <div class="row">
+        <button class="btn" id="go" type="button">Ver cómo las contesta</button>
+        <button class="btn line" id="clear" type="button">Borrar</button>
+      </div>
+      <p class="hint">Nada de esto se envía a ningún lado. Todo ocurre en su navegador.</p>
+
+      <div class="share" id="share">
+        <p style="margin:0 0 8px;font-size:15px;color:var(--paper)"><strong>Su enlace.</strong> Ábralo donde quiera o mándeselo a quien decide con usted — lleva su demo dentro.</p>
+        <code id="link"></code>
+        <div class="row" style="margin:0">
+          <button class="btn line" id="copy" type="button">Copiar el enlace</button>
+          <a class="btn" id="mail" href="#">Mandármelo a mí</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="top">
+        <div class="av" id="av">·</div>
+        <div><div class="who" id="who">Su negocio</div><div class="st">en línea</div></div>
+      </div>
+      <div class="tag" id="tag">Todavía no ha escrito nada</div>
+      <div class="thread" id="thread">
+        <div class="empty">Escriba una pregunta a la izquierda y presione <em>Ver cómo las contesta</em>.<br><br>El demo aparece acá.</div>
+      </div>
+      <div class="asks">
+        <p id="askp">Pregúntele algo</p>
+        <div class="chips" id="chips"></div>
+        <button class="reset" id="reset" type="button">Empezar de nuevo</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Por qué le pido las suyas y no le enseño las mías</h2>
+    <p>Un demo con las preguntas de otro negocio no prueba nada. Con las suyas sí: usted ya sabe cuáles son las tres que le repiten, y sabe cuáles no debería contestar una máquina.</p>
+    <p><strong>Fíjese sobre todo en las que dejó en blanco.</strong> Ahí el asistente no inventa: dice que no lo tiene y avisa. Esa es la parte que importa. Un asistente que improvisa un precio o que opina sobre un síntoma le crea un problema; no se lo quita.</p>
+    <p>Lo de acá es un ejemplo estático hecho en su navegador. El de verdad va conectado a su número de WhatsApp, contesta en segundos a cualquier hora, en español e inglés, y le deja la cita anotada. <a href="./" style="color:var(--lamp)">Los precios y el resto están en la página principal.</a></p>
+  </section>
+
+  <footer>
+    Esta página no guarda nada, no pide correo y no usa cookies de rastreo. Lo que escriba se queda en su navegador; el enlace que genera lo lleva usted.<br>
+    Gilber García · <a href="mailto:gilbergarciata@gmail.com">gilbergarciata@gmail.com</a>
+  </footer>
+</div>
+
+<script>
+var thread = document.getElementById("thread");
+var chips  = document.getElementById("chips");
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var QA = [];
+var clock = 23*60 + 12;
+var busy = false;
+var NAME = "Su negocio";
+
+var NO_ANSWER = [
+  "Esa no la tengo cargada, y no le voy a dar un dato que después no se cumpla.\nSe la consulto al equipo y le confirman hoy mismo.",
+  "Esa no me la dejaron cargada. Prefiero decírselo así y no inventarle un número.\nLe aviso al equipo y le escriben.",
+  "Esa se la tiene que confirmar una persona. Ya le paso el mensaje y le contestan hoy."
+];
+var NOTE_NO = "Lo que no está cargado, no lo inventa.";
+
+var ALWAYS = {
+  q: "¿Me da el precio exacto por acá?",
+  a: "No le voy a dar un número que después cambie cuando lo vean en persona.\nLo que sí hago ya es apartarle el espacio. ¿Le sirve entre semana o el sábado?",
+  note: "Prefiere quedarse corto a prometer de más."
+};
+var CITA = {
+  q: "Quiero una cita",
+  a: "Con gusto. Necesito:\n• Nombre completo\n• Teléfono\n• Motivo\n\nY deme dos opciones de horario para confirmarle la que esté libre.",
+  note: null
+};
+
+function hhmm(){ var h=Math.floor(clock/60)%24, m=clock%60;
+  return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0"); }
+
+function bubble(side, text){
+  var el = document.createElement("div");
+  el.className = "msg " + side;
+  el.textContent = text;
+  var t = document.createElement("span");
+  t.className = "t"; t.textContent = hhmm();
+  el.appendChild(t);
+  thread.appendChild(el);
+  thread.scrollTop = thread.scrollHeight;
+}
+function note(text){
+  var el = document.createElement("div");
+  el.className = "msg them";
+  el.style.background = "transparent";
+  el.style.border = "1px dashed var(--rule-2)";
+  el.style.color = "var(--faint)";
+  el.style.fontSize = "13.5px";
+  el.textContent = "↑ " + text;
+  thread.appendChild(el);
+  thread.scrollTop = thread.scrollHeight;
+}
+function typing(){
+  var el = document.createElement("div");
+  el.className = "typing";
+  el.innerHTML = "<i></i><i></i><i></i>";
+  thread.appendChild(el);
+  thread.scrollTop = thread.scrollHeight;
+  return el;
+}
+function ask(i, btn){
+  if (busy) return;
+  busy = true;
+  var all = chips.querySelectorAll("button");
+  for (var k=0;k<all.length;k++) all[k].disabled = true;
+  var item = QA[i];
+  clock += 1;
+  bubble("you", item.q);
+  var wait = reduce ? 60 : 700 + Math.min(item.a.length * 7, 900);
+  var dots = reduce ? null : typing();
+  setTimeout(function(){
+    if (dots) dots.remove();
+    clock += 1;
+    bubble("them", item.a);
+    if (item.note) note(item.note);
+    if (btn) btn.remove();
+    var rest = chips.querySelectorAll("button");
+    for (var k=0;k<rest.length;k++) rest[k].disabled = false;
+    busy = false;
+    if (!chips.querySelector("button")) {
+      var done = document.createElement("span");
+      done.style.cssText = "font-size:13.5px;color:var(--faint)";
+      done.textContent = "Eso es todo lo que le cargó a este ejemplo. El suyo lleva lo suyo.";
+      chips.appendChild(done);
+    }
+  }, wait);
+}
+function render(){
+  thread.innerHTML = "";
+  chips.innerHTML = "";
+  clock = 23*60 + 12;
+  busy = false;
+  bubble("them", "¡Buenas! Soy el asistente de " + NAME + ". Pregúnteme lo que necesite y le contesto de una.");
+  QA.forEach(function(item, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = item.q;
+    b.addEventListener("click", function(){ ask(i, b); });
+    chips.appendChild(b);
+  });
+}
+
+function val(id){ return (document.getElementById(id).value || "").trim(); }
+
+function collect(){
+  var name = val("neg") || "su negocio";
+  var qa = [];
+  var noAnswers = 0;
+  [["q1","a1"],["q2","a2"],["q3","a3"]].forEach(function(p){
+    var q = val(p[0]);
+    if (!q) return;
+    var a = val(p[1]);
+    if (a) { qa.push({q:q, a:a, note:null}); }
+    else {
+      qa.push({q:q, a:NO_ANSWER[noAnswers % NO_ANSWER.length], note:NOTE_NO});
+      noAnswers++;
+    }
+  });
+  return {name:name, qa:qa};
+}
+
+function apply(data){
+  NAME = data.name;
+  document.getElementById("who").textContent = data.name;
+  document.getElementById("av").textContent = (data.name.replace(/^(la|el|los|las)\s+/i,"")[0] || "·").toUpperCase();
+  document.getElementById("tag").textContent = "Demo armado con lo que usted acaba de escribir";
+  QA = data.qa.slice(0,3).concat([ALWAYS, CITA]);
+  render();
+}
+
+function enc(o){
+  return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/=+$/,"");
+}
+function dec(s){
+  return JSON.parse(decodeURIComponent(escape(atob(s))));
+}
+
+document.getElementById("go").addEventListener("click", function(){
+  var d = collect();
+  if (!d.qa.length) {
+    document.getElementById("q1").focus();
+    document.getElementById("tag").textContent = "Escriba al menos una pregunta";
+    return;
+  }
+  apply(d);
+  var payload = {n:d.name, p:[["q1","a1"],["q2","a2"],["q3","a3"]].map(function(p){
+    return [val(p[0]), val(p[1])];
+  }).filter(function(x){ return x[0]; })};
+  var url = location.origin + location.pathname + "#d=" + enc(payload);
+  document.getElementById("link").textContent = url;
+  document.getElementById("share").classList.add("on");
+  var body = "Estas son las tres preguntas que más me repiten:\n\n"
+    + payload.p.map(function(x,i){ return (i+1)+". "+x[0]; }).join("\n")
+    + "\n\nNegocio: " + d.name
+    + "\nMi demo: " + url + "\n\n";
+  document.getElementById("mail").href = "mailto:gilbergarciata@gmail.com"
+    + "?subject=" + encodeURIComponent("Las preguntas que más me repiten — " + d.name)
+    + "&body=" + encodeURIComponent(body);
+  try { history.replaceState(null, "", "#d=" + enc(payload)); } catch(e){}
+  if (window.plausible) window.plausible("Demo armado");
+});
+
+document.getElementById("clear").addEventListener("click", function(){
+  ["neg","q1","a1","q2","a2","q3","a3"].forEach(function(id){ document.getElementById(id).value=""; });
+  document.getElementById("share").classList.remove("on");
+  document.getElementById("who").textContent = "Su negocio";
+  document.getElementById("av").textContent = "·";
+  document.getElementById("tag").textContent = "Todavía no ha escrito nada";
+  QA = [];
+  thread.innerHTML = '<div class="empty">Escriba una pregunta a la izquierda y presione <em>Ver cómo las contesta</em>.<br><br>El demo aparece acá.</div>';
+  chips.innerHTML = "";
+  try { history.replaceState(null, "", location.pathname); } catch(e){}
+});
+
+document.getElementById("reset").addEventListener("click", function(){ if (QA.length) render(); });
+
+document.getElementById("copy").addEventListener("click", function(){
+  var txt = document.getElementById("link").textContent;
+  var btn = this;
+  function ok(){ btn.textContent = "Copiado"; setTimeout(function(){ btn.textContent="Copiar el enlace"; }, 1800); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(txt).then(ok, ok); }
+  else {
+    var ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta);
+    ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); ok();
+  }
+});
+
+(function boot(){
+  var m = location.hash.match(/#d=(.+)$/);
+  if (!m) return;
+  try {
+    var p = dec(m[1]);
+    if (!p || !p.p || !p.p.length) return;
+    document.getElementById("neg").value = p.n || "";
+    p.p.forEach(function(x, i){
+      document.getElementById("q"+(i+1)).value = x[0] || "";
+      document.getElementById("a"+(i+1)).value = x[1] || "";
+    });
+    var noAnswers = 0;
+    apply({name: p.n || "su negocio", qa: p.p.map(function(x){
+      if (x[1]) return {q:x[0], a:x[1], note:null};
+      var r = {q:x[0], a:NO_ANSWER[noAnswers % NO_ANSWER.length], note:NOTE_NO};
+      noAnswers++;
+      return r;
+    })});
+  } catch(e){}
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "587b7503cdfb4c9fb3e51438de0cb120"}'></script>
+</body>
+</html>
