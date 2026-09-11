@@ -11,7 +11,6 @@
 <meta name="theme-color" content="#0D1117">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Gloock&family=Newsreader:opsz,wght@6..72,300..600&display=swap">
-<script defer data-domain="garcia-g-g.github.io" src="https://plausible.io/js/script.outbound-links.js"></script>
 <style>
 :root{
   --ink:#0D1117; --ink-2:#141C21; --ink-3:#1A242A;
@@ -368,8 +367,9 @@ document.getElementById("go").addEventListener("click", function(){
   document.getElementById("mail").href = "mailto:gilbergarciata@gmail.com"
     + "?subject=" + encodeURIComponent("Las preguntas que más me repiten — " + d.name)
     + "&body=" + encodeURIComponent(body);
-  try { history.replaceState(null, "", "#d=" + enc(payload)); } catch(e){}
-  if (window.plausible) window.plausible("Demo armado");
+  var frag = "#d=" + enc(payload);
+  if (location.search.indexOf("hecho=1") === -1) { location.href = location.pathname + "?hecho=1" + frag; return; }
+  try { history.replaceState(null, "", location.pathname + location.search + frag); } catch(e){}
 });
 
 document.getElementById("clear").addEventListener("click", function(){
