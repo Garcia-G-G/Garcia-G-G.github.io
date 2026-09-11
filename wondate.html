@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Won Date</title>
+<meta name="description" content="Attribution for GoHighLevel agencies. Every lead keeps its click ID from ad to closed deal, and your reports stop saying Direct / None. Looking for ten founding agencies.">
+<meta property="og:title" content="Won Date">
+<meta property="og:description" content="Your GoHighLevel reports finally say which ad closed the deal.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0E13">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◎</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#0B0E13; --bg-2:#12171F; --bg-3:#1A212B;
+  --line:#232C38; --line-2:#33404F;
+  --fg:#E7EDF5; --fg-2:#9FAEC0; --fg-3:#6B7C90;
+  --hot:#FF5C38; --ok:#4ADE9B; --warn:#F5C451;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+.mast{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--hot);flex:none}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fg-3)}
+
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.1;letter-spacing:-.025em;
+  font-weight:700;margin:0 0 18px;max-width:18ch}
+h1 em{font-style:normal;color:var(--hot)}
+.lede{font-size:19px;color:var(--fg-2);max-width:56ch;margin:0 0 16px}
+.lede b{color:var(--fg);font-weight:600}
+section{padding:52px 0;border-top:1px solid var(--line)}
+.hero{padding:52px 0 56px}
+h2{font-size:clamp(22px,2.6vw,28px);line-height:1.2;letter-spacing:-.018em;
+  font-weight:600;margin:0 0 12px}
+h3{font-size:16px;font-weight:600;margin:0 0 6px}
+p{margin:0 0 14px;color:var(--fg-2);max-width:64ch}
+p b{color:var(--fg);font-weight:600}
+a{color:var(--hot)}
+
+.report{border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  background:var(--bg-2);margin:26px 0 10px;max-width:660px}
+.report .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:10px 14px;background:var(--bg-3);border-bottom:1px solid var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3)}
+table{width:100%;border-collapse:collapse;font-family:"IBM Plex Mono",monospace;font-size:13.5px}
+th{text-align:left;font-weight:500;color:var(--fg-3);padding:9px 14px;
+  border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+td{padding:9px 14px;border-bottom:1px solid var(--line);color:var(--fg-2)}
+tr:last-child td{border-bottom:0}
+td.n{text-align:right;color:var(--fg)}
+.bad{color:var(--hot)}
+.good{color:var(--ok)}
+.cap{font-size:13.5px;color:var(--fg-3);margin:0 0 30px;max-width:64ch}
+
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:22px 0 0}
+.q{border-left:2px solid var(--line-2);padding:2px 0 2px 14px}
+.q p{font-size:15.5px;color:var(--fg);margin:0 0 6px}
+.q .src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--fg-3)}
+.q .v{color:var(--warn)}
+
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:22px 0 0;max-width:64ch}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 40px;color:var(--fg-2)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;
+  width:24px;height:24px;border:1px solid var(--line-2);border-radius:50%;
+  display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;
+  font-size:12px;color:var(--hot)}
+ol.steps b{color:var(--fg)}
+
+.honest{border:1px solid var(--line-2);border-radius:8px;padding:20px 22px;
+  background:var(--bg-2);max-width:64ch;margin:22px 0 0}
+.honest h3{color:var(--warn)}
+.honest p:last-child{margin-bottom:0}
+
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:24px 0 0}
+.tier{border:1px solid var(--line);border-radius:8px;padding:18px;background:var(--bg-2)}
+.tier.pick{border-color:var(--hot)}
+.tier .name{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--fg-3);margin:0 0 8px}
+.tier .price{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 2px}
+.tier .price span{font-size:14px;font-weight:400;color:var(--fg-3)}
+.tier ul{margin:12px 0 0;padding:0 0 0 16px;color:var(--fg-2);font-size:14.5px}
+.tier li{margin:0 0 5px}
+
+.btn{display:inline-block;background:var(--hot);color:#140500;text-decoration:none;
+  padding:13px 22px;border-radius:5px;font-weight:600;font-size:16px}
+.btn:hover{background:#ff7355}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line-2)}
+.btn.ghost:hover{border-color:var(--hot);color:var(--hot)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 0}
+footer{padding:30px 0 56px;border-top:1px solid var(--line);
+  font-size:14px;color:var(--fg-3)}
+footer a{color:var(--fg-2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mast">
+    <div class="logo"><span class="dot"></span>Won Date</div>
+    <span class="kicker">Attribution for GoHighLevel agencies</span>
+  </div>
+
+  <div class="hero">
+    <p class="kicker" style="margin:0 0 16px">Not built yet · Looking for ten founding agencies</p>
+    <h1>Your client thinks the leads are junk. <em>Your report can't prove otherwise.</em></h1>
+    <p class="lede">In GoHighLevel, the click ID dies at the form. Conversions come back as <code>Direct / None</code>, Google Ads calls land as <code>UNKNOWN</code>, and revenue gets stamped with the date the contact was created instead of the date the deal actually closed.</p>
+    <p class="lede"><b>So the report says cost per conversation.</b> The client wanted cost per closed deal. That gap is how accounts get lost.</p>
+
+    <div class="report">
+      <div class="hd"><span>What the report says today</span><span>Illustration</span></div>
+      <table>
+        <tr><th>Source</th><th>Leads</th><th>Closed</th><th>Revenue</th></tr>
+        <tr><td class="bad">Direct / None</td><td class="n">214</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td class="bad">UNKNOWN</td><td class="n">86</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>google / cpc</td><td class="n">31</td><td class="n">—</td><td class="n">—</td></tr>
+      </table>
+    </div>
+    <div class="report">
+      <div class="hd"><span>What it should say</span><span>Illustration</span></div>
+      <table>
+        <tr><th>Campaign</th><th>Booked</th><th>Closed</th><th>Cost / close</th></tr>
+        <tr><td class="good">Search — Implants Exact</td><td class="n">44</td><td class="n">11</td><td class="n">$182</td></tr>
+        <tr><td class="good">PMax — Retarget</td><td class="n">61</td><td class="n">4</td><td class="n">$744</td></tr>
+        <tr><td class="good">Meta — Lead Form</td><td class="n">97</td><td class="n">2</td><td class="n">$1,910</td></tr>
+      </table>
+    </div>
+    <p class="cap">Both tables are made up, and labelled as such. I'm not going to show you someone else's numbers and call them a case study.</p>
+
+    <div class="cta">
+      <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Won%20Date%20%E2%80%94%20founding%20agency&amp;body=Agency%3A%0AGoHighLevel%20sub-accounts%3A%0AAd%20platforms%20we%20run%3A%0AThe%20attribution%20problem%20that%20costs%20us%20the%20most%3A%0A%0A">Take a founding seat</a>
+      <a class="btn ghost" href="#how">How it works</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>This isn't my opinion. It's the most-voted thing on their own board.</h2>
+    <p>HighLevel runs a public request board. <b>Ad Reporting &amp; Attribution is its largest category</b>, and the top requests describe one compound bug.</p>
+    <div class="quotes">
+      <div class="q">
+        <p>“Won date on actual close date for reporting instead of date created.”</p>
+        <span class="src">ideas.gohighlevel.com · <span class="v">513 votes</span></span>
+      </div>
+      <div class="q">
+        <p>“All ‘Events’ being passed into Google Analytics is marked as ‘Direct/None’ versus the correct GHL Source.”</p>
+        <span class="src">ideas.gohighlevel.com · <span class="v">189 votes</span></span>
+      </div>
+      <div class="q">
+        <p>Google Ads call extensions arriving with the source recorded as “UNKNOWN”.</p>
+        <span class="src">ideas.gohighlevel.com · <span class="v">167 votes</span></span>
+      </div>
+    </div>
+    <p style="margin-top:24px">HighLevel ships fast — and it does absorb popular requests. It already built the native rebilling dashboard that had 462 votes. <b>This one it hasn't touched</b>, and the reason is structural: the fix lives outside GoHighLevel, in the Google, Meta and TikTok APIs, in click IDs, consent and hashing. That's the kind of work a platform leaves to the marketplace.</p>
+  </section>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><b>One tracking snippet per sub-account.</b> It stores <code>gclid</code>, <code>gbraid</code>, <code>wbraid</code>, <code>fbclid</code>, <code>ttclid</code> and the UTMs in a first-party cookie, and writes them into custom fields on the contact. The app creates those fields for you on install.</li>
+      <li><b>The ID rides along.</b> Form, booked call, opportunity — the click ID stays attached to the person, not to the session.</li>
+      <li><b>The close gets a real timestamp.</b> GoHighLevel's API has no <code>wonDate</code>, so Won Date listens for the status change and seals its own. From then on, revenue lands on the day it was actually won.</li>
+      <li><b>The conversion goes back out.</b> Offline conversion upload to Google Ads, Conversions API to Meta, Events API to TikTok — so the platforms optimise toward closed deals instead of toward chat volume.</li>
+      <li><b>One export per sub-account.</b> Cost per booked appointment and cost per closed deal, in a table you can put in front of the client without apologising for it.</li>
+    </ol>
+
+    <div class="honest">
+      <h3>Two limits I'd rather tell you now</h3>
+      <p><b>Meta only accepts events up to seven days old.</b> If your client's sales cycle is longer than a week, Meta gets the conversion but not the true close date. Google and TikTok don't have that limit. Anyone who tells you otherwise hasn't read the docs.</p>
+      <p><b>There's no backfill.</b> Deals already won before you install can't be reconstructed — GoHighLevel never stored the close date to begin with. Attribution starts the day the snippet goes in.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Price, and why it's this shape</h2>
+    <p>Flat per agency. Not per contact, not per event, not per conversion. The single loudest complaint across every marketing tool is a bill that grows while you sleep, and I'd rather not build that.</p>
+    <div class="tiers">
+      <div class="tier pick">
+        <p class="name">Founding — first ten</p>
+        <div class="price">$79<span> / month</span></div>
+        <ul>
+          <li>Up to 15 sub-accounts</li>
+          <li>Price locked for as long as you stay</li>
+          <li>You pick what gets built first</li>
+          <li>My phone number, not a ticket form</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <p class="name">Agency</p>
+        <div class="price">$149<span> / month</span></div>
+        <ul>
+          <li>Up to 15 sub-accounts</li>
+          <li>Google, Meta and TikTok</li>
+          <li>Export per sub-account</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <p class="name">Scale</p>
+        <div class="price">$299<span> / month</span></div>
+        <ul>
+          <li>Up to 50 sub-accounts</li>
+          <li>Agency-level install</li>
+          <li>White-label reporting</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:14.5px;color:var(--fg-3)">Nothing is charged until it runs on your account and you've seen a report you'd send to a client.</p>
+  </section>
+
+  <section>
+    <h2>What a founding seat actually is</h2>
+    <p>It is not a waitlist and it is not a pre-order. <b>Won Date does not exist yet.</b> I've verified the APIs on both sides — what GoHighLevel exposes, what it doesn't, and where each ad platform draws its line — and I'd rather build it against ten real sub-account setups than against my own guesses.</p>
+    <p>A founding seat means: a half-hour call where you show me the report you're embarrassed to send, first access when it runs, the price above locked permanently, and no charge until it works on your data.</p>
+    <p>If it turns out your agency's problem is something else entirely, that's a useful answer too, and it costs you a half hour.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:gilbergarciata@gmail.com?subject=Won%20Date%20%E2%80%94%20founding%20agency&amp;body=Agency%3A%0AGoHighLevel%20sub-accounts%3A%0AAd%20platforms%20we%20run%3A%0AThe%20attribution%20problem%20that%20costs%20us%20the%20most%3A%0A%0A">Take a founding seat</a>
+    </div>
+  </section>
+
+  <footer>
+    Built by Gilber García · <a href="mailto:gilbergarciata@gmail.com">gilbergarciata@gmail.com</a><br>
+    Won Date is an independent product and is not affiliated with or endorsed by HighLevel, Google, Meta or TikTok. Vote counts are quoted from HighLevel's public request board as of September 2026. The two tables above are illustrations, not customer data.
+  </footer>
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "587b7503cdfb4c9fb3e51438de0cb120"}'></script>
+</body>
+</html>
